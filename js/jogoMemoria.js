@@ -1,4 +1,6 @@
 const grid = document.querySelector(".grid");
+const spanJogador = document.querySelector(".jogador");
+const timer = document.querySelector(".timer");
 
 const conteudos = ["img1", "img2", "img3"];
 
@@ -12,11 +14,17 @@ let primeiraCarta = "";
 let segundaCarta = "";
 
 const checarVencedor = () => {
-    const cartasDesabilitadas = document.querySelectorAll(".desativar-carta");
-    if (cartasDesabilitadas.length === conteudos.length * 2) {
-        alert("Parabéns! Você venceu!");
-    }
-}
+  const cartasDesabilitadas = document.querySelectorAll(".desativar-carta");
+  if (cartasDesabilitadas.length === conteudos.length * 2) {
+    clearInterval(this.loop);
+    alert(
+      `Parabéns ${localStorage.getItem("jogador")}! Você ganhou em ${
+        timer.innerHTML
+      } segundos!`
+    );
+    reiniciarJogo();
+  }
+};
 
 const verificaCartas = () => {
   const primeiroConteudo = primeiraCarta.getAttribute("dado-conteudo");
@@ -27,7 +35,9 @@ const verificaCartas = () => {
     segundaCarta.firstChild.classList.add("desativar-carta");
     primeiraCarta = "";
     segundaCarta = "";
-    checarVencedor();
+    setTimeout(() => {
+      checarVencedor();
+    }, 400);
   } else {
     setTimeout(() => {
       primeiraCarta.classList.remove("revela-carta");
@@ -80,4 +90,19 @@ const adicionarConteudosAoGrid = () => {
   });
 };
 
-adicionarConteudosAoGrid();
+const iniciarTimer = () => {
+  this.loop = setInterval(() => {
+    const tempoAtual = +timer.innerHTML;
+    timer.innerHTML = tempoAtual + 1;
+  }, 1000);
+};
+
+window.onload = () => {
+  spanJogador.innerHTML = localStorage.getItem("jogador");
+  iniciarTimer();
+  adicionarConteudosAoGrid();
+};
+
+function reiniciarJogo() {
+  window.location.reload();
+}
