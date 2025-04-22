@@ -27,7 +27,7 @@ let segundaCarta = "";
 
 const checarVencedor = () => {
   const cartasDesabilitadas = document.querySelectorAll(".desativar-carta");
-  if (cartasDesabilitadas.length === conteudos.length * 2) {
+  if (cartasDesabilitadas.length === conteudos.length) {
     clearInterval(this.loop);
     alert(
       `Parabéns ${localStorage.getItem("jogador")}! Você ganhou em ${
@@ -60,17 +60,26 @@ const verificaCartas = () => {
   }
 };
 
-const revelaCarta = ({ target }) => {
-  if (target.parentNode.classList.contains("revela-carta")) {
+const revelaCarta = (evento) => {
+  let card = evento.target;
+
+  while (!card.classList.contains("card")) {
+    card = card.parentNode;
+    if (!card) {
+      return;
+    }
+  }
+
+  if (card.classList.contains("revela-carta") || card.firstChild.classList.contains("desativar-carta")) {
     return;
   }
 
   if (primeiraCarta === "") {
-    target.parentNode.classList.add("revela-carta");
-    primeiraCarta = target.parentNode;
+    card.classList.add("revela-carta");
+    primeiraCarta = card;
   } else if (segundaCarta === "") {
-    target.parentNode.classList.add("revela-carta");
-    segundaCarta = target.parentNode;
+    card.classList.add("revela-carta");
+    segundaCarta = card;
     verificaCartas();
   }
 };
