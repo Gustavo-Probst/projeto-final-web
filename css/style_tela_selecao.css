@@ -118,7 +118,7 @@ body {
 .cover-heading {
   font-size: 500%;
   -webkit-text-stroke-color: #1c0b61;
-  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-width: 3px;
 }
 .fundo {
   position: fixed;
@@ -131,4 +131,7 @@ body {
   background-position: center; /* sobe a imagem */
   background-repeat: no-repeat;
   z-index: -1;
+}
+p{
+  color: white;
 }
