@@ -2,10 +2,21 @@ const grid = document.querySelector(".grid");
 const spanJogador = document.querySelector(".jogador");
 const timer = document.querySelector(".timer");
 
-const conteudos = ["facil1", "resp-facil1", "facil(2)", "resp-facil(2)", "resp-facil(3)", "facil(3)", "resp-facil(4)", "facil(4)", "resp-facil(5)", "facil(5)"];
+const conteudos = [
+  "facil1",
+  "resp-facil1",
+  "facil(2)",
+  "resp-facil(2)",
+  "resp-facil(3)",
+  "facil(3)",
+  "resp-facil(4)",
+  "facil(4)",
+  "resp-facil(5)",
+  "facil(5)",
+];
 
 const pares = {
-  "facil1": "resp-facil1",
+  facil1: "resp-facil1",
   "resp-facil1": "facil1",
   "facil(2)": "resp-facil(2)",
   "resp-facil(2)": "facil(2)",
@@ -31,7 +42,8 @@ const checarVencedor = () => {
   if (cartasDesabilitadas.length === conteudos.length * 2) {
     clearInterval(this.loop);
     alert(
-      `Parabéns ${localStorage.getItem("jogador")}! Você ganhou em ${timer.innerHTML
+      `Parabéns ${localStorage.getItem("jogador")}! Você ganhou em ${
+        timer.innerHTML
       } segundos!`
     );
     reiniciarJogo();

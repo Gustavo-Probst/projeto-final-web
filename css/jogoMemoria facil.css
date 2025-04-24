@@ -9,7 +9,7 @@ main {
   background-image: url("../images/backg.png");
   background-size: cover;
   background-position: center;
-  background-position: center ; /* sobe a imagem */
+  background-position: center;
   background-repeat: no-repeat;
   opacity: 0.8;
   z-index: -2;
@@ -17,17 +17,17 @@ main {
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 800px;
-    padding: 30px;
-    margin: 0 0 30px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  padding: 30px;
+  margin: 0 0 30px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
 }
 
 .grid {
@@ -78,7 +78,7 @@ header {
   opacity: 0.5;
   pointer-events: none;
 }
-.corpo{
+.corpo {
   height: 100%;
   background-color: #fffde7;
 }

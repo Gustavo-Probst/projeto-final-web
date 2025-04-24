@@ -4,6 +4,24 @@ const primeiraLinhaTeclado = document.getElementById("primeiraLinhaTeclado");
 const segundaLinhaTeclado = document.getElementById("segundaLinhaTeclado");
 const terceiraLinhaTeclado = document.getElementById("terceiraLinhaTeclado");
 
+const palavrasEducativas = [
+  "AULAS",
+  "LIVRO",
+  "PROVA",
+  "MENTE",
+  "TEXTO",
+  "LETRA",
+  "SINAL",
+  "REGRA",
+  "FRASE",
+  "VERSO",
+  "VOGAL",
+  "FORMA",
+  "SUJEI",
+  "VERBO",
+  "POEMA",
+];
+
 const letrasPrimeiraLinha = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const letrasSegundaLinha = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
 const letrasTerceiraLinha = ["Z", "X", "C", "V", "B", "N", "M"];
@@ -12,7 +30,8 @@ const linhas = 6;
 const colunas = 5;
 let linhaAtual = 0;
 let colunaAtual = 0;
-let palavreco = "areia";
+let palavreco =
+  palavrasEducativas[Math.floor(Math.random() * palavrasEducativas.length)];
 let palavrecoMap = {};
 const palpites = [];
 
@@ -42,18 +61,59 @@ for (let linhaIndex = 0; linhaIndex < linhas; linhaIndex++) {
 }
 
 const checarPalpite = () => {
-  const palpite = palpites[linhaAtual].join("");
+  const palpite = palpites[linhaAtual].join("").toUpperCase();
   if (palpite.length !== colunas) {
     return;
   }
 
   var colunasAtuais = document.querySelectorAll(".digitando");
+
   for (let index = 0; index < colunas; index++) {
     const letra = palpite[index];
-    if (palavrecoMap[letra] === undefined) {
-        colunasAtuais[index].classList.add("incorreto");
-    }    
+    if (!palavreco.includes(letra)) {
+      colunasAtuais[index].classList.add("incorreto");
+    } else {
+      if (palavreco[index] === letra) {
+        colunasAtuais[index].classList.add("correto");
+      } else {
+        colunasAtuais[index].classList.add("lugar-errado");
+      }
+    }
   }
+
+  if (palpite === palavreco) {
+    alert(`Parabéns! Você acertou: ${palavreco}`);
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
+    return;
+  } else {
+    if (linhaAtual === linhas - 1) {
+      alert(`Game Over! A palavra era: ${palavreco}`);
+      setInterval(() => {
+        window.location.reload();
+      }, 2000);
+      return;
+    } else {
+      proximaLinha();
+    }
+  }
+};
+
+const proximaLinha = () => {
+  linhaAtual++;
+  colunaAtual = 0;
+  const colunasAtuais = document.querySelectorAll(".digitando");
+  colunasAtuais.forEach((coluna) => {
+    coluna.classList.remove("digitando");
+    coluna.classList.add("desabilitado");
+  });
+  const novaLinha = document.querySelector("#linha" + linhaAtual);
+  const colunasNovaLinha = novaLinha.querySelectorAll(".coluna-letra");
+  colunasNovaLinha.forEach((coluna) => {
+    coluna.classList.remove("desabilitado");
+    coluna.classList.add("digitando");
+  });
 };
 
 const cliqueTeclado = (tecla) => {
@@ -83,7 +143,15 @@ criarLinhaTeclado(letrasSegundaLinha, segundaLinhaTeclado);
 criarLinhaTeclado(letrasTerceiraLinha, terceiraLinhaTeclado);
 
 const backspace = () => {
-  console.log("apaga");
+  if (colunaAtual === 0) {
+    return;
+  }
+  colunaAtual--;
+  const letraAtual = document.querySelector(
+    "#linha" + linhaAtual + "coluna" + colunaAtual
+  );
+  letraAtual.textContent = "";
+  palpites[linhaAtual][colunaAtual] = "";
 };
 
 const botaoBackspace = document.createElement("button");
@@ -95,3 +163,18 @@ const botaoEnter = document.createElement("button");
 botaoEnter.addEventListener("click", checarPalpite);
 botaoEnter.textContent = "ENTER";
 linhaApagarConfirmar.append(botaoEnter);
+
+document.addEventListener("keydown", (event) => {
+  const tecla = event.key.toUpperCase();
+  if (letrasPrimeiraLinha.includes(tecla)) {
+    cliqueTeclado(tecla);
+  } else if (letrasSegundaLinha.includes(tecla)) {
+    cliqueTeclado(tecla);
+  } else if (letrasTerceiraLinha.includes(tecla)) {
+    cliqueTeclado(tecla);
+  } else if (tecla === "BACKSPACE") {
+    backspace();
+  } else if (tecla === "ENTER") {
+    checarPalpite();
+  }
+});

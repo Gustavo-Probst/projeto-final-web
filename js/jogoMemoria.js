@@ -2,18 +2,30 @@ const grid = document.querySelector(".grid");
 const spanJogador = document.querySelector(".jogador");
 const timer = document.querySelector(".timer");
 
-const conteudos = ["comb-1","resultado-1","comb-2","resultado-2","comb-3","resultado-3","comb-4","resultado-4","comb-5","resultado-5"];
+const conteudos = [
+  "comb-1",
+  "resultado-1",
+  "comb-2",
+  "resultado-2",
+  "comb-3",
+  "resultado-3",
+  "comb-4",
+  "resultado-4",
+  "comb-5",
+  "resultado-5",
+];
 
-const pares = {"comb-1": "resultado-1",
-"resultado-1": "comb-1",
-"comb-2": "resultado-2",
-"resultado-2": "comb-2",
-"comb-3": "resultado-3",
-"resultado-3": "comb-3",
-"comb-4": "resultado-4",
-"resultado-4": "comb-4",
-"comb-5": "resultado-5",
-"resultado-5": "comb-5",
+const pares = {
+  "comb-1": "resultado-1",
+  "resultado-1": "comb-1",
+  "comb-2": "resultado-2",
+  "resultado-2": "comb-2",
+  "comb-3": "resultado-3",
+  "resultado-3": "comb-3",
+  "comb-4": "resultado-4",
+  "resultado-4": "comb-4",
+  "comb-5": "resultado-5",
+  "resultado-5": "comb-5",
 };
 
 const criarElemento = (tag, classe) => {
@@ -70,7 +82,10 @@ const revelaCarta = (evento) => {
     }
   }
 
-  if (card.classList.contains("revela-carta") || card.firstChild.classList.contains("desativar-carta")) {
+  if (
+    card.classList.contains("revela-carta") ||
+    card.firstChild.classList.contains("desativar-carta")
+  ) {
     return;
   }
 
@@ -125,8 +140,8 @@ window.onload = () => {
 };
 
 //function newFunction() {
-  //const conteudos = [["sdsdomb"]]; "img2", "img3";;
- // return conteudos;
+//const conteudos = [["sdsdomb"]]; "img2", "img3";;
+// return conteudos;
 //}
 
 function reiniciarJogo() {
