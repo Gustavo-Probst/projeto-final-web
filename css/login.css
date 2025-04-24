@@ -76,7 +76,6 @@
 }
 
 #background_telas {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -84,9 +83,6 @@
   background-image: url("/images/back1.png");
   background-size: cover;
   background-position: center top ; /* sobe a imagem */
-  background-repeat: no-repeat;
   opacity: 0.9;
-  z-index: -1;
-  
-
+  z-index: -1;  
 }

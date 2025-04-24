@@ -121,7 +121,6 @@ body {
   -webkit-text-stroke-width: 3px;
 }
 .fundo {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -129,7 +128,6 @@ body {
   background-image: url("/images/back1.png");
   background-size: cover;
   background-position: center; /* sobe a imagem */
-  background-repeat: no-repeat;
   z-index: -1;
 }
 p{
