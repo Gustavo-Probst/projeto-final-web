@@ -6,14 +6,12 @@ main {
   align-items: center;
   justify-content: center;
   padding: 20px 50px;
-  background-image: url("../images/backg.png");
+  background-image: url("../images/back2.png");
   background-size: cover;
   background-position: center;
-  background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
-  z-index: -2;
-  background-size: 130%;
+  
+  
 }
 
 header {
@@ -48,6 +46,8 @@ header {
   transition: all 400ms ease;
   transform-style: preserve-3d;
   background-color: #ccc;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .face {
@@ -58,6 +58,7 @@ header {
   background-position: center;
   border: 2px solid #fff;
   transition: all 400ms ease;
+  z-index: 1;
 }
 
 .frente {
